@@ -26,7 +26,7 @@ const Login = () => {
             toast.error(flash?.message, { className: "bg-danger text-white" });
         }
         if (flash?.success) {
-            toast.error(flash?.success, { className: "bg-primary text-white" });
+            toast.error(flash?.success, { className: "bg-success text-white" });
         }
     }, [flash]);
     return (
