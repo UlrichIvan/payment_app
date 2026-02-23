@@ -1,13 +1,130 @@
+import robot from "@src/assets/images/png/robot.png";
+import happy from "@src/assets/images/png/happy.jpg";
+import { useForm, usePage } from "@inertiajs/react";
+import { useCallback, useEffect } from "react";
+import { toast, Toaster } from "sonner";
+import { PageProps } from "../types/global";
+
 const Home = () => {
+    const { flash } = usePage<PageProps>().props;
+    const { data, errors, post, setData, processing } = useForm<{
+        email: string;
+        password: string;
+    }>({
+        email: "",
+        password: "",
+    });
+    const submit = useCallback(
+        (e: any) => {
+            e.preventDefault();
+            post(route("login"));
+        },
+        [post]
+    );
+    useEffect(() => {
+        if (flash?.message) {
+            toast.error(flash?.message, { className: "bg-danger text-white" });
+        }
+        if (flash?.success) {
+            toast.error(flash?.success, { className: "bg-primary text-white" });
+        }
+    }, [flash]);
     return (
-        <div className="container-fluid vh-100 overflow-hidden">
-            <div className="d-flex h-100 justify-content-center align-items-center">
-                <form>
-                    <div className="btn btn-outline-primary">
-                        Login with google
+        <div className="container-fluid vh-100 overflow-x-hidden overflow-y-auto">
+            <div className="row h-100">
+                <div className="col-6 d-none col-md-6 d-md-block px-0">
+                    <div className="h-100">
+                        <img
+                            src={happy}
+                            alt="happy"
+                            className="img-fluid h-100"
+                        />
                     </div>
-                </form>
+                </div>
+                <div className="col-12 col-md-6 px-0">
+                    <form
+                        onSubmit={submit}
+                        className="d-flex h-100 mx-100 gap-2 justify-content-center flex-column bg-primary-subtle bg-gradient px-3"
+                    >
+                        <div className="brand d-md-none d-sm-flex justify-content-center">
+                            <img
+                                src={robot}
+                                alt="robot"
+                                width={100}
+                                height={100}
+                                className="img-fluid h-100"
+                            />
+                        </div>
+                        <h5 className="text-center">
+                            L'intelligence logicielle au service de votre
+                            croissance
+                        </h5>
+
+                        <div className="form-group">
+                            <label
+                                htmlFor="email"
+                                className="text-capitalize form-label"
+                            >
+                                email
+                            </label>
+                            <input
+                                type="text"
+                                className={`form-control ${
+                                    errors.email ? "is-invalid" : ""
+                                }`}
+                                name="email"
+                                id="email"
+                                value={data.email}
+                                onChange={(e) =>
+                                    setData("email", e.target.value)
+                                }
+                                placeholder="Votre email address"
+                            />
+                            {errors.email && (
+                                <small className="text-danger">
+                                    {errors.email}
+                                </small>
+                            )}
+                        </div>
+                        <div className="form-group">
+                            <label
+                                htmlFor="password"
+                                className="text-capitalize form-label"
+                            >
+                                password
+                            </label>
+                            <input
+                                type="password"
+                                className={`form-control ${
+                                    errors.password ? "is-invalid" : ""
+                                }`}
+                                name="password"
+                                id="password"
+                                placeholder="votre mot de passe doit contenir 12 caracteres minimum"
+                                value={data.password}
+                                onChange={(e) =>
+                                    setData("password", e.target.value)
+                                }
+                            />
+                            {errors.password && (
+                                <small className="text-danger">
+                                    {errors.password}
+                                </small>
+                            )}
+                        </div>
+                        <div className="my-2 w-100">
+                            <button
+                                type="submit"
+                                disabled={processing}
+                                className="btn btn-outline-primary text-capitalize w-100"
+                            >
+                                se connecter
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
+            <Toaster position="top-right" />
         </div>
     );
 };
