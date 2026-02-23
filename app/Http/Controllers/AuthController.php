@@ -19,7 +19,7 @@ class AuthController extends Controller
         $valided = $request->validated();
 
         if (Auth::attempt($valided)) {
-            dd($valided);
+            return redirect()->route("welcome");
         } else {
             return back()->with("message", "email ou mot de passe invalide");
         }
