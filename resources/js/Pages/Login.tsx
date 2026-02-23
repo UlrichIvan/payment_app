@@ -1,5 +1,5 @@
 import robot from "@src/assets/images/png/robot.png";
-import { useForm, usePage } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 import { useCallback, useEffect } from "react";
 import { toast } from "sonner";
 import { PageProps } from "../types/global";
@@ -97,6 +97,9 @@ const Login = () => {
                     se connecter
                 </button>
             </div>
+            <Link href={route("signup")} className="text-center">
+                vous n'avez pas de compte ? créer votre compte
+            </Link>
         </form>
     );
 };
