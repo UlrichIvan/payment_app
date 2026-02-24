@@ -36,13 +36,14 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $total = collect(Session::get('cart', []))->count();
         return [
             ...parent::share($request),
             "flash" => [
                 "message" => Session::pull("message"),
                 "success" => Session::pull("success")
             ],
-            "cart" => Session::get('cart', [])
+            "totalCart" => $total
         ];
     }
 }
