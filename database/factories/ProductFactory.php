@@ -16,11 +16,19 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        $produits = ['Smartphone', 'Ordinateur Portable', 'Casque Audio', 'Clavier Mécanique', 'Souris Gamer'];
+        $produits = [
+            'iphone' => "images/jpg/iphone.jpg",
+            'ordinateur' => "images/png/ordinateur.png",
+            'casque' => "images/png/casque.png",
+            'clavier' => "images/png/clavier.png",
+            'souris' => "images/jpg/souris.jpg"
+        ];
+        $name =  $this->faker->randomElement(array_keys($produits));
         return [
-            'name' => $this->faker->randomElement($produits) . ' ' . $this->faker->word(),
+            'name' => $name . ' ' . $this->faker->word(),
             'price' => $this->faker->randomFloat(2, 10, 1000),
-            'description' => $this->faker->sentence()
+            'description' => $this->faker->sentence(),
+            "image" => $produits[$name]
         ];
     }
 }
