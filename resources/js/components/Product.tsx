@@ -31,14 +31,19 @@ const Product = ({
                 <p className="card-text fs-3">{product.price} €</p>
                 <div className="container-fluid px-0">
                     <div className="row">
-                        <div className="col-12">
-                            <Link
-                                href="#"
-                                className="btn btn-outline-success text-capitalize w-100 my-1"
-                            >
-                                ajouter
-                            </Link>
-                        </div>
+                        {inDetails && (
+                            <div className="col-12">
+                                <Link
+                                    href={route("add.product", {
+                                        product: product.id,
+                                    })}
+                                    method="post"
+                                    className="btn btn-outline-success text-capitalize w-100 my-1"
+                                >
+                                    ajouter
+                                </Link>
+                            </div>
+                        )}
                         {!inDetails && (
                             <div className="col-12">
                                 <Link
