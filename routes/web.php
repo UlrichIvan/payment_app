@@ -16,5 +16,10 @@ Route::middleware("guest")->group(function () {
 Route::middleware("auth")->group(function () {
     // welcome
     Route::get("/welcome", [UserController::class, "index"])->name("welcome");
+    // logout
     Route::post("/logout", [UserController::class, "logout"])->name("logout");
+    // details of product
+    Route::get("/products/{product}", [UserController::class, "showProduct"])
+        ->whereNumber("product")
+        ->name("show.product");
 });
