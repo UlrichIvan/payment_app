@@ -24,13 +24,15 @@ const Navbar = () => {
                 <span className="ms-2 text-capitalize">E-commerce</span>
             </Link>
             <div className="d-flex gap-2 align-items-center">
-                <div className="cart mx-3 position-relative">
+                <Link
+                    href={route("show.cart")}
+                    className="cart mx-3 position-relative"
+                >
                     <img src={cartImage} width={30} alt="cart" />
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         {cart.length}
-                        <span className="visually-hidden">unread messages</span>
                     </span>
-                </div>
+                </Link>
                 <form onSubmit={submit}>
                     <button
                         className="btn btn-outline-success text-capitalize"
