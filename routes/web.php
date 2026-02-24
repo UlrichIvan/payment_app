@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,12 @@ Route::middleware("auth")->group(function () {
     Route::get("/products/{product}", [UserController::class, "showProduct"])
         ->whereNumber("product")
         ->name("show.product");
+    // add,show,delete product from cart
+    Route::get("/show/cart", [CartController::class, "index"])->name("show.cart");
+    Route::delete("/delete/cart/{product}", [CartController::class, "delete"])
+        ->whereNumber("product")
+        ->name("delete.product");
+    Route::post("/add/cart/{product}", [CartController::class, "add"])
+        ->whereNumber("product")
+        ->name("add.product");
 });
