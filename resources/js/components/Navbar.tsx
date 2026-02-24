@@ -1,8 +1,11 @@
-import { Link, useForm } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 import robot from "@src/assets/images/png/robot.png";
+import cartImage from "@src/assets/images/png/cart.png";
 import { useCallback } from "react";
+import { PageProps } from "../types/global";
 
 const Navbar = () => {
+    const { cart = [] } = usePage<PageProps>().props;
     const { post } = useForm();
     const submit = useCallback(
         (e: any) => {
@@ -20,14 +23,23 @@ const Navbar = () => {
                 <img src={robot} width={30} alt="brand" />
                 <span className="ms-2 text-capitalize">E-commerce</span>
             </Link>
-            <form onSubmit={submit}>
-                <button
-                    className="btn btn-outline-success text-capitalize"
-                    type="submit"
-                >
-                    deconnexion
-                </button>
-            </form>
+            <div className="d-flex gap-2 align-items-center">
+                <div className="cart mx-3 position-relative">
+                    <img src={cartImage} width={30} alt="cart" />
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {cart.length}
+                        <span className="visually-hidden">unread messages</span>
+                    </span>
+                </div>
+                <form onSubmit={submit}>
+                    <button
+                        className="btn btn-outline-success text-capitalize"
+                        type="submit"
+                    >
+                        deconnexion
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };

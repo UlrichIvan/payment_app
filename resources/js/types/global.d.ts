@@ -26,5 +26,6 @@ export type PageProps = {
     products?: Product[];
     product?: Product;
     average: number;
+    cart?: Product[];
     [key: string]: any;
 };

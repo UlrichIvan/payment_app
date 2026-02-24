@@ -41,7 +41,8 @@ class HandleInertiaRequests extends Middleware
             "flash" => [
                 "message" => Session::pull("message"),
                 "success" => Session::pull("success")
-            ]
+            ],
+            "cart" => Session::get('cart', [])
         ];
     }
 }
