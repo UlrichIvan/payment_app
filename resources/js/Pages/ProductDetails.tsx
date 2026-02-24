@@ -12,7 +12,11 @@ const ProductDetails = () => {
             <div className="row my-4 mx-4">
                 {product && (
                     <div className="col-12 col-md-6">
-                        <Product product={product} inDetails />
+                        <Product
+                            product={product}
+                            inDetails
+                            average={average}
+                        />
                     </div>
                 )}
                 <div className="col-12 col-md-6">
@@ -28,7 +32,7 @@ const ProductDetails = () => {
                     ) : (
                         <div>
                             <div className="text-secondary text-capitalize fs-6">
-                                Pas de commentaire sur ce produit pour l'instant
+                                Pas de notes sur ce produit pour l'instant
                             </div>
                         </div>
                     )}
