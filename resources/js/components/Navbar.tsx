@@ -5,7 +5,7 @@ import { useCallback } from "react";
 import { PageProps } from "../types/global";
 
 const Navbar = () => {
-    const { cart = [] } = usePage<PageProps>().props;
+    const { totalCart = 0 } = usePage<PageProps>().props;
     const { post } = useForm();
     const submit = useCallback(
         (e: any) => {
@@ -30,7 +30,7 @@ const Navbar = () => {
                 >
                     <img src={cartImage} width={30} alt="cart" />
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {cart.length}
+                        {totalCart}
                     </span>
                 </Link>
                 <form onSubmit={submit}>
