@@ -17,6 +17,7 @@ export type Product = {
     description: string;
     image: string;
     reviews: Review[];
+    quantity?: number;
 };
 export type PageProps = {
     flash: {
@@ -26,6 +27,10 @@ export type PageProps = {
     products?: Product[];
     product?: Product;
     average: number;
-    cart?: Product[];
+    totalCart?: number;
+    cartItems?: {
+        items: Product[];
+        total: number;
+    };
     [key: string]: any;
 };
