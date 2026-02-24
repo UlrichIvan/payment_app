@@ -31,7 +31,7 @@ const Product = ({
                 <p className="card-text fs-3">{product.price} €</p>
                 <div className="container-fluid px-0">
                     <div className="row">
-                        {inDetails && (
+                        {inDetails ? (
                             <div className="col-12">
                                 <Link
                                     href={route("add.product", {
@@ -43,8 +43,7 @@ const Product = ({
                                     ajouter
                                 </Link>
                             </div>
-                        )}
-                        {!inDetails && (
+                        ) : (
                             <div className="col-12">
                                 <Link
                                     href={route("show.product", {
