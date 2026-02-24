@@ -34,4 +34,13 @@ class UserController extends Controller
 
         return redirect()->route("login");
     }
+
+    public function showProduct(Product $product)
+    {
+        $product->image = Storage::url($product->image);
+        return Inertia::render("ProductDetails", [
+            "product" =>  $product->load('reviews'),
+            'average' => $product->average_rating,
+        ]);
+    }
 }
