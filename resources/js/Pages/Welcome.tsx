@@ -10,8 +10,11 @@ const Welcome = () => {
             <Navbar />
             <div className="row my-4">
                 {products.map((product) => (
-                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
-                        <Product product={product} key={product.id} />
+                    <div
+                        className="col-12 col-sm-6 col-md-4 col-lg-3 my-2"
+                        key={product.id}
+                    >
+                        <Product product={product} />
                     </div>
                 ))}
             </div>
