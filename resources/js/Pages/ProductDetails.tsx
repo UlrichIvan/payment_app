@@ -3,9 +3,12 @@ import { PageProps } from "../types/global";
 import Navbar from "../components/Navbar";
 import Product from "../components/Product";
 import Review from "../components/Review";
+import useFlash from "../hooks/useFlash";
+import { Toaster } from "sonner";
 
 const ProductDetails = () => {
     const { product = null, average } = usePage<PageProps>().props;
+    useFlash();
     return (
         <div className="container-fluid px-0 vh-100 overflow-y-auto overflow-x-hidden">
             <Navbar />
@@ -38,6 +41,7 @@ const ProductDetails = () => {
                     )}
                 </div>
             </div>
+            <Toaster position="top-right" />
         </div>
     );
 };
