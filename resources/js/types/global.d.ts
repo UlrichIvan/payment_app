@@ -24,6 +24,9 @@ export type PageProps = {
         message: string;
         success: string;
     };
+    user?: {
+        name: string;
+    };
     products?: Product[];
     product?: Product;
     average: number;

@@ -5,7 +5,7 @@ import { useCallback } from "react";
 import { PageProps } from "../types/global";
 
 const Navbar = () => {
-    const { totalCart = 0 } = usePage<PageProps>().props;
+    const { totalCart = 0, user = null } = usePage<PageProps>().props;
     const { post } = useForm();
     const submit = useCallback(
         (e: any) => {
@@ -16,13 +16,27 @@ const Navbar = () => {
     );
     return (
         <div className="nav-bar shadow-sm d-flex py-2 justify-content-between align-items-center bg-light px-2 sticky-top">
-            <Link
-                className="text-decoration-none text-black"
-                href={route("welcome")}
-            >
-                <img src={robot} width={30} alt="brand" />
-                <span className="ms-2 text-capitalize">E-commerce</span>
-            </Link>
+            <div className="d-flex justify-content-center align-items-center gap-2">
+                <Link
+                    className="text-decoration-none text-black"
+                    href={route("welcome")}
+                >
+                    <img src={robot} width={30} alt="brand" />
+                    <span className="ms-2 text-capitalize">E-commerce</span>
+                </Link>
+                {user && (
+                    <div
+                        className="img-fluid bg-primary-subtle d-flex justify-content-center align-items-center rounded-circle"
+                        style={{ width: 40, height: 40 }}
+                        title={user.name.toLocaleUpperCase()}
+                    >
+                        <div className="text-capitalize fw-bolder">
+                            {user.name[0]}
+                        </div>
+                    </div>
+                )}
+            </div>
+
             <div className="d-flex gap-2 align-items-center">
                 <Link
                     href={route("show.cart")}
@@ -35,7 +49,7 @@ const Navbar = () => {
                 </Link>
                 <form onSubmit={submit}>
                     <button
-                        className="btn btn-outline-success text-capitalize"
+                        className="btn btn-sm btn-outline-success text-capitalize"
                         type="submit"
                     >
                         deconnexion
