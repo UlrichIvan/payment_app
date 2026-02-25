@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,9 @@ Route::middleware("auth")->group(function () {
     Route::post("/add/cart/{product}", [CartController::class, "add"])
         ->whereNumber("product")
         ->name("add.product");
+    // payment with stripe
+    Route::get("/payment/success", [PaymentController::class, "checkoutSuccess"])->name("checkout.success");
+    Route::get("/payment/failed", [PaymentController::class, "checkoutFailed"])->name("checkout.failed");
+
+    Route::post("/payment", [PaymentController::class, "checkout"])->name("checkout");
 });
