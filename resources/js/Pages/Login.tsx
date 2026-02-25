@@ -1,12 +1,11 @@
 import robot from "@src/assets/images/png/robot.png";
-import { Link, useForm, usePage } from "@inertiajs/react";
-import { useCallback, useEffect } from "react";
-import { toast } from "sonner";
-import { PageProps } from "../types/global";
+import { Link, useForm } from "@inertiajs/react";
+import { useCallback } from "react";
 import LoginLayout from "../layouts/LoginLayout";
+import useFlash from "../hooks/useFlash";
 
 const Login = () => {
-    const { flash } = usePage<PageProps>().props;
+    useFlash();
     const { data, errors, post, setData, processing } = useForm<{
         email: string;
         password: string;
@@ -21,14 +20,6 @@ const Login = () => {
         },
         [post]
     );
-    useEffect(() => {
-        if (flash?.message) {
-            toast.error(flash?.message, { className: "bg-danger text-white" });
-        }
-        if (flash?.success) {
-            toast.error(flash?.success, { className: "bg-success text-white" });
-        }
-    }, [flash]);
     return (
         <form
             onSubmit={submit}

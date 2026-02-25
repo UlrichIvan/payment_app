@@ -42,7 +42,7 @@ class AuthController extends Controller
             }
 
             User::create($valided);
-            return back()->with("success", "compte créer avec success");
+            return redirect()->route("login")->with("success", "compte créer avec success");
         } catch (\Throwable $e) {
             return back()->with("message", "une erreur est survenue, veuillez réessayer s'il vous plait");
         }
