@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
-    && docker-php-ext-install pdo pdo_pgsql zip
+    && docker-php-ext-install pdo pdo_pgsql zip bcmath
 
 # Configuration d'Apache
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
