@@ -14,7 +14,12 @@ const Index = () => {
             <Navbar />
             {cartItems?.items && cartItems?.items.length > 0 ? (
                 <div className="row my-4">
-                    <h3 className="text-center">Resumer de votre panier</h3>
+                    <h3 className="text-center text-decoration-underline">
+                        Resumer de votre panier
+                    </h3>
+                    <h3 className="text-center">
+                        Total à payé : {cartItems.total} €
+                    </h3>
                     <>
                         {cartItems?.items.map((product) => (
                             <div className="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
