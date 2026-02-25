@@ -48,7 +48,7 @@ class CartController extends Controller
                 ];
             }
             Session::put('cart', $cart);
-            return back()->with("success", "product ajouter avec success");
+            return back()->with("success", "product ajouter au panier avec succès");
         } catch (\Throwable $e) {
             return back()->with("message", "une erreur est survenue,veuillez reéssayez s'il vous plait");
         }
@@ -59,6 +59,7 @@ class CartController extends Controller
             $cart = Session::get('cart', []);
             $cart = collect($cart)->filter(fn($_, $key) => $key != $product->id);
             Session::put('cart', $cart);
+            return back()->with("success", "product supprimer du panier avec succès");
         } catch (\Throwable $e) {
             return back()->with("message", "une erreur est survenue,veuillez reéssayez s'il vous plait");
         }
