@@ -4,7 +4,7 @@ services:
     runtime: docker
     region: frankfurt
     plan: free
-    branch: main
+    branch: deploy
     envVars:
       - key: APP_KEY
         generateValue: true
