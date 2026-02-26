@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: laravel-inertia-app
+    runtime: docker
+    region: frankfurt
+    plan: free
+    branch: main
+    envVars:
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_URL
+        sync: false # À définir dans le dashboard Render une fois le service créé
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DATABASE_URL
+        sync: false # Ajoutez votre chaîne de connexion Neon ici dans le dashboard Render
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_DRIVER
+        value: database
