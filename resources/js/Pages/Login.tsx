@@ -25,7 +25,7 @@ const Login = () => {
             onSubmit={submit}
             className="d-flex h-100 mx-100 gap-2 justify-content-center flex-column bg-primary-subtle bg-gradient px-3"
         >
-            <div className="brand d-md-none d-sm-flex justify-content-center">
+            <div className="brand d-flex d-md-none justify-content-center">
                 <img
                     src={robot}
                     alt="robot"
