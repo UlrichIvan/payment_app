@@ -10,6 +10,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-bcmath": "*",
         "inertiajs/inertia-laravel": "*",
         "laravel/cashier": "^16.3",
         "laravel/framework": "^12.0",
@@ -75,6 +76,9 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "post-install-cmd": [
+            "php artisan storage:link --force"
         ]
     },
     "extra": {
